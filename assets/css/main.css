@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    --blue-color: #5579EA;
+    --gray-color: #DBE0E8;
+}
+html{
+    font-size: 100%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+
+.sighin_bg{
+    height: 100vh;
+    background: linear-gradient(90deg, #5579EA 50%, #DBE0E8 50% );
+}
+.sighin_bg .container-lg{
+    height: 100%;
+}
+.signin_row{
+    height: 560px;
+}
+.signin_img{
+    background: url(https://png.pngtree.com/background/20220730/original/pngtree-family-support-for-hospitalized-patient-flat-color-vector-illustration-picture-image_1887487.jpg);
+    /* background-color: red; */
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+}
+
+.signin_logo{
+    color: var(--blue-color);
+
+}
+
+
+
+
+
+
+/*------------FOR RESPONSIVE--------- */
+/* Mobile and Tablet */
+@media (max-width: 991px) {}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {}
+
+/* PC and low resolution PC */
+@media (min-width: 992px) {}
+
+/* Low resolution PC */
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+/* Tablet and PC */
+@media (min-width: 768px) {}
