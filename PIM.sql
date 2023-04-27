@@ -45,138 +45,123 @@ CREATE TABLE BENHNHAN
 );
 
 
-INSERT INTO BENHNHAN VALUES ('BN001', 'Vo Thanh Hoa', 'Nam', 'Quang Ngai', 'Binh Duong', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN002', 'Pham Tam Hieu', 'Nam', 'Phu Tho', 'Binh Duong', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN003', 'Pham Thi Duong', 'Nam', 'Thanh pho Ho Chi Minh', 'Thanh pho Ho Chi Minh', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN004', 'Tran Thu Duong', 'Nu', 'An Giang', 'Can Tho', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN005', 'Pham Quoc Hieu', 'Nam', 'Dong Nai', 'Thanh pho Da Nang', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN006', 'Le Van Quynh', 'Nam', 'Thanh pho Da Nang', 'Dong Nai', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN007', 'Truong Tri Ha', 'Nu', 'Binh Duong', 'Thanh pho Da Nang', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN008', 'Tran Van Khanh', 'Nam', 'Dak Lak', 'Dong Nai', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN009', 'Nguyen Tam Hieu', 'Nam', 'Ben Tre', 'Thanh pho Da Nang', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN010', 'Truong Van Hieu', 'Nu', 'Thanh pho Da Nang', 'Thanh pho Da Nang', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN011', 'Pham Thi Phuong', 'Nam', 'Nghe An', 'Thanh pho Ho Chi Minh', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN012', 'Hoang Quoc An', 'Nu', 'Quang Ninh', 'Can Tho', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN013', 'Hoang Quoc Hoa', 'Nu', 'Binh Duong', 'Thanh pho Ha Noi', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN014', 'Phan Thi Hao', 'Nu', 'Thanh pho Ho Chi Minh', 'Can Tho', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN015', 'Tran Quoc Tu', 'Nam', 'Quang Ngai', 'Thanh pho Ho Chi Minh', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN016', 'Nguyen Minh Hieu', 'Nu', 'Thanh pho Ho Chi Minh', 'Thanh pho Ha Noi', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN017', 'Vo Anh Duong', 'Nu', 'Phu Tho', 'Thanh pho Da Nang', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN018', 'Hoang Minh Khoa', 'Nam', 'Nghe An', 'Can Tho', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN019', 'Hoang Anh Khoa', 'Nu', 'Phu Tho', 'Binh Duong', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN020', 'Nguyen Anh Lien', 'Nu', 'Tuyen Quang', 'Thanh pho Ho Chi Minh', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN021', 'Le Thi Nguyen', 'Nam', 'Nghe An', 'Can Tho', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN022', 'Phan Van Ha', 'Nam', 'Ben Tre', 'Dong Nai', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN023', 'Tran Thi Duong', 'Nu', 'Nam Dinh', 'Thanh pho Ho Chi Minh', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN024', 'Truong Thanh Ha', 'Nam', 'Thanh pho Da Nang', 'Thanh pho Ha Noi', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN025', 'Vo Thu Tu', 'Nam', 'Phu Tho', 'Thanh pho Ha Noi', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN026', 'Le Thi Quynh', 'Nam', 'Dak Lak', 'Thanh pho Ha Noi', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN027', 'Tran Quoc Khanh', 'Nu', 'An Giang', 'Thanh pho Ho Chi Minh', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN028', 'Le Tri Ha', 'Nam', 'An Giang', 'Thanh pho Ha Noi', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN029', 'Nguyen Tam An', 'Nam', 'Lam Dong', 'Can Tho', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN030', 'Phan Tri Ha', 'Nam', 'Thanh pho Ha Noi', 'Binh Duong', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN031', 'Phan Thi Lien', 'Nam', 'Quang Ngai', 'Thanh pho Ho Chi Minh', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN032', 'Hoang Quoc Lien', 'Nu', 'Thanh pho Ha Noi', 'Thanh pho Ho Chi Minh', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN033', 'Le Tam Phuong', 'Nu', 'Thanh pho Ha Noi', 'Can Tho', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN034', 'Vo Tam Khoa', 'Nu', 'Lam Dong', 'Thanh pho Da Nang', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN035', 'Hoang Ngoc Khoa', 'Nu', 'Dak Lak', 'Thanh pho Ha Noi', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN036', 'Nguyen Quoc Ha', 'Nam', 'Ben Tre', 'Thanh pho Da Nang', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN037', 'Le Quoc Hoa', 'Nu', 'Thanh pho Hai Phong', 'Can Tho', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN038', 'Tran Thanh Hao', 'Nam', 'Thanh pho Ho Chi Minh', 'Can Tho', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN039', 'Vo Thu Duong', 'Nam', 'Thanh pho Ho Chi Minh', 'Binh Duong', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN040', 'Hoang Thanh Nguyen', 'Nu', 'Thanh Hoa', 'Dong Nai', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN041', 'Truong Thi Khoa', 'Nam', 'Dak Lak', 'Thanh pho Ho Chi Minh', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN042', 'Le Kim Lien', 'Nam', 'Lam Dong', 'Binh Duong', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN043', 'Le Minh Hao', 'Nu', 'Nam Dinh', 'Thanh pho Da Nang', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN044', 'Truong Thanh Nguyen', 'Nam', 'Quang Ninh', 'Thanh pho Ha Noi', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN045', 'Vo Anh Ha', 'Nu', 'Quang Ninh', 'Can Tho', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN046', 'Truong Anh Phuong', 'Nu', 'Ben Tre', 'Thanh pho Ho Chi Minh', 'Binh Thuong');
-INSERT INTO BENHNHAN VALUES ('BN047', 'Nguyen Quoc An', 'Nu', 'Lam Dong', 'Can Tho', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN048', 'Phan Thu Hao', 'Nam', 'Quang Ngai', 'Thanh pho Ho Chi Minh', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN049', 'Truong Minh Duong', 'Nam', 'Phu Tho', 'Can Tho', 'Nguy Cap');
-INSERT INTO BENHNHAN VALUES ('BN050', 'Nguyen Tam Ha', 'Nam', 'Thanh pho Can Tho', 'Thanh pho Da Nang', 'Binh Thuong');
+INSERT INTO BENHNHAN VALUES ('BN001', 'Tran Anh Lien', 'Nu', null, 'Thanh pho Ha Noi', 'Thanh pho Ha Noi');
+INSERT INTO BENHNHAN VALUES ('BN002', 'Le Ngoc Quynh', 'Nu', null, 'Lam Dong', 'Can Tho');
+INSERT INTO BENHNHAN VALUES ('BN003', 'Vo Tri Quynh', 'Nam', null, 'Nam Dinh', 'Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN004', 'Nguyen Anh Quynh', 'Nu', null, 'Nghe An', 'Thanh pho Ha Noi');
+INSERT INTO BENHNHAN VALUES ('BN005', 'Hoang Minh Ha', 'Nu', null, 'Dak Lak', 'Binh Duong');
+INSERT INTO BENHNHAN VALUES ('BN006', 'Pham Minh An', 'Nu', null, 'Dak Lak', 'Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN007', 'Le Thi Phuong', 'Nu', null, 'Dong Nai', 'Thanh pho Ha Noi');
+INSERT INTO BENHNHAN VALUES ('BN008', 'Vo Anh Khanh', 'Nam', null, 'Thai Nguyen', 'Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN009', 'Tran Tam Tu', 'Nam', null, 'Long An', 'Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN010', 'Truong Kim An', 'Nam', null, 'Thanh pho Hai Phong', 'Dong Nai');
+INSERT INTO BENHNHAN VALUES ('BN011', 'Nguyen Minh Phuong', 'Nam', null, 'Tuyen Quang', 'Dong Nai');
+INSERT INTO BENHNHAN VALUES ('BN012', 'Tran Thi Hao', 'Nam', null, 'Thai Nguyen', 'Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN013', 'Hoang Tam Hao', 'Nu', null, 'An Giang', 'Dong Nai');
+INSERT INTO BENHNHAN VALUES ('BN014', 'Le Thu Phuong', 'Nam', null, 'Thanh pho Ho Chi Minh', 'Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN015', 'Truong Minh Hoa', 'Nu', null, 'Thanh pho Ho Chi Minh', 'Thanh pho Ha Noi');
+INSERT INTO BENHNHAN VALUES ('BN016', 'Truong Quoc Khanh', 'Nu', null, 'Quang Ninh', 'Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN017', 'Pham Anh Ha', 'Nam', null, 'Dak Lak', 'Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN018', 'Truong Tam Duong', 'Nu', null, 'Lam Dong', 'Dong Nai');
+INSERT INTO BENHNHAN VALUES ('BN019', 'Vo Ngoc Tu', 'Nam', null, 'Ben Tre', 'Binh Duong');
+INSERT INTO BENHNHAN VALUES ('BN020', 'Vo Anh Tu', 'Nam', null, 'Thanh pho Can Tho', 'Can Tho');
+INSERT INTO BENHNHAN VALUES ('BN021', 'Truong Quoc Hoa', 'Nu', null, 'Thai Nguyen', 'Binh Duong');
+INSERT INTO BENHNHAN VALUES ('BN022', 'Nguyen Thanh Khanh', 'Nam', null, 'Quang Ninh', 'Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN023', 'Hoang Tri Khoa', 'Nu', null, 'Dak Lak', 'Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN024', 'Le Thanh Ha', 'Nam', null, 'An Giang', 'Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN025', 'Vo Ngoc Quynh', 'Nam', null, 'Ben Tre', 'Can Tho');
+INSERT INTO BENHNHAN VALUES ('BN026', 'Tran Thu Hoa', 'Nu', null, 'Thanh pho Ha Noi', 'Dong Nai');
+INSERT INTO BENHNHAN VALUES ('BN027', 'Tran Anh Duong', 'Nu', null, 'Thanh pho Ho Chi Minh', 'Can Tho');
+INSERT INTO BENHNHAN VALUES ('BN028', 'Nguyen Thu Khanh', 'Nam', null, 'Phu Tho', 'Dong Nai');
+INSERT INTO BENHNHAN VALUES ('BN029', 'Hoang Tri Duong', 'Nu', null, 'Tuyen Quang', 'Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN030', 'Truong Ngoc Hieu', 'Nam', null, 'Thanh pho Hai Phong', 'Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN031', 'Phan Thanh Hieu', 'Nu', null, 'Dak Lak', 'Thanh pho Ha Noi');
+INSERT INTO BENHNHAN VALUES ('BN032', 'Phan Tri Quynh', 'Nu', null, 'Quang Ninh', 'Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN033', 'Le Minh Binh', 'Nam', null, 'Thanh pho Can Tho', 'Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN034', 'Pham Anh Hao', 'Nu', null, 'Nghe An', 'Can Tho');
+INSERT INTO BENHNHAN VALUES ('BN035', 'Nguyen Ngoc Quynh', 'Nam', null, 'Thanh pho Ha Noi', 'Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN036', 'Hoang Thu Khanh', 'Nu', null, 'Thanh pho Da Nang', 'Dong Nai');
+INSERT INTO BENHNHAN VALUES ('BN037', 'Truong Thu Phuong', 'Nam', null, 'Thai Nguyen', 'Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN038', 'Le Van Tu', 'Nu', null, 'Ben Tre', 'Dong Nai');
+INSERT INTO BENHNHAN VALUES ('BN039', 'Vo Thi Quynh', 'Nu', null, 'Quang Ninh', 'Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN040', 'Truong Tri Lien', 'Nam', null, 'Lam Dong', 'Thanh pho Ha Noi');
+INSERT INTO BENHNHAN VALUES ('BN041', 'Truong Minh Nguyen', 'Nu', null, 'Binh Duong', 'Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN042', 'Pham Van Tu', 'Nu', null, 'Thanh pho Hai Phong', 'Thanh pho Ha Noi');
+INSERT INTO BENHNHAN VALUES ('BN043', 'Tran Quoc Ha', 'Nu', null, 'Phu Tho', 'Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN044', 'Truong Van Hao', 'Nam', null, 'Long An', 'Dong Nai');
+INSERT INTO BENHNHAN VALUES ('BN045', 'Le Van An', 'Nu', null, 'Thanh pho Can Tho', 'Can Tho');
+INSERT INTO BENHNHAN VALUES ('BN046', 'Hoang Thi Hieu', 'Nu', null, 'Dak Lak', 'Dong Nai');
+INSERT INTO BENHNHAN VALUES ('BN047', 'Phan Minh Nguyen', 'Nu', null, 'Thai Nguyen', 'Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN048', 'Le Van Khoa', 'Nu', null, 'Quang Tri', 'Dong Nai');
+INSERT INTO BENHNHAN VALUES ('BN049', 'Truong Quoc Nguyen', 'Nu', null, 'Dak Lak', 'Thanh pho Ha Noi');
+INSERT INTO BENHNHAN VALUES ('BN050', 'Vo Kim Duong', 'Nu', null, 'Phu Tho', 'Binh Duong');
 
 select * from BENHNHAN;
 
-CREATE TABLE BENH
+create table benh
 (
-	MaBenh VARCHAR(50) NOT NULL,
-	TenBenh VARCHAR2(100) NOT NULL,
-	MucDo NUMBER,
-	TenKhoa VARCHAR(50),
-	CONSTRAINT PK_BENH PRIMARY KEY (MaBenh),
-	CONSTRAINT UNQ_TENBENH UNIQUE (TenBenh)
-);
-INSERT INTO BENH VALUES ('BE001', 'Viem Tai', 2, 'Nhi');
-INSERT INTO BENH VALUES ('BE002', 'Viem Thanh Quan', 1, 'Nhi');
-INSERT INTO BENH VALUES ('BE003', 'Soi', 5, 'Nhi');
-INSERT INTO BENH VALUES ('BE004', 'Dau Mat Do', 1, 'Nhi');
-INSERT INTO BENH VALUES ('BE005', 'Thuy Dau', 5, 'Nhi');
-INSERT INTO BENH VALUES ('BE006', 'Sot Ret', 3, 'Truyen Nhiem');
-INSERT INTO BENH VALUES ('BE007', 'Cum', 2, 'Truyen Nhiem');
-INSERT INTO BENH VALUES ('BE008', 'Sot Xuat Huyet', 4, 'Truyen Nhiem');
-INSERT INTO BENH VALUES ('BE009', 'Covid 19', 5, 'Truyen Nhiem');
-INSERT INTO BENH VALUES ('BE010', 'Dich Hach', 5, 'Truyen Nhiem');
-INSERT INTO BENH VALUES ('BE011', 'Dot Quy', 5, 'Cap Cuu');
-INSERT INTO BENH VALUES ('BE012', 'Nhoi Mau Co Tim', 5, 'Cap Cuu');
-INSERT INTO BENH VALUES ('BE013', 'Chan Thuong So Nao', 5, 'Cap Cuu');
-INSERT INTO BENH VALUES ('BE014', 'Bong', 5, 'Cap Cuu');
-INSERT INTO BENH VALUES ('BE015', 'Ngo Doc', 5, 'Cap Cuu');
-INSERT INTO BENH VALUES ('BE016', 'Ung Thu Da Day', 4, 'Ung Buou');
-INSERT INTO BENH VALUES ('BE017', 'Ung Thu Da', 3, 'Ung Buou');
-INSERT INTO BENH VALUES ('BE018', 'Ung Thu Gan', 5, 'Ung Buou');
-INSERT INTO BENH VALUES ('BE019', 'Ung Thu Phoi', 5, 'Ung Buou');
-INSERT INTO BENH VALUES ('BE020', 'Ung Thu Vu', 4, 'Ung Buou');
-INSERT INTO BENH VALUES ('BE021', 'Viem Tui Mat', 3, 'Noi Soi');
-INSERT INTO BENH VALUES ('BE022', 'Cat Amidan', 2, 'Noi Soi');
-INSERT INTO BENH VALUES ('BE023', 'Cat Ruot Thua', 3, 'Noi Soi');
-INSERT INTO BENH VALUES ('BE024', 'Soi Than', 3, 'Noi Soi');
-INSERT INTO BENH VALUES ('BE025', 'Thoat Vi Dia Dem', 3, 'Noi Soi');
+    mabenh varchar(50),
+    tenbenh varchar2(100),
+    tenkhoa varchar(50),
+    constraint pk_benh primary key (mabenh)
+)
 
-select * from BENH;
-
-CREATE TABLE PHONGBENH
+create table phongbenh
 (
-	MaPhong VARCHAR(10) NOT NULL,
-	Loai VARCHAR(20),
-	Toa NUMBER,
-	Lau NUMBER,
-	SucChua INT,
-	CONSTRAINT PK_PHONGBENH PRIMARY KEY (MaPhong)
-);
+    maphong varchar(10),
+    loai varchar(20),
+    toa number,
+    lau number,
+    succhua int,
+    controng int,
+    constraint pk_phongbenh primary key (maphong)
+)
 
-CREATE TABLE CABENH
-(
-	MaBN VARCHAR(10) NOT NULL,
-	MaBS VARCHAR(10) NOT NULL,
-	MaBenh VARCHAR(50) NOT NULL,
-	HinhThuc VARCHAR(20),
-	NgayBatDau DATE,
-	NgayKetThuc DATE,
-	TinhTrang VARCHAR(20),
-	MaPhong VARCHAR(10),
-	CONSTRAINT PK_CABENH PRIMARY KEY (MaBN,MaBS,MaBenh,MaPhong),
-	CONSTRAINT FK_CABENH_MaBN FOREIGN KEY (MaBN) REFERENCES BENHNHAN(MaBN),
-	CONSTRAINT FK_CABENH_MaBS FOREIGN KEY (MaBS) REFERENCES BACSI(MaBS),
-	CONSTRAINT FK_CABENH_MaBenh FOREIGN KEY (MaBenh) REFERENCES BENH(MaBenh),
-	CONSTRAINT FK_CABENH_MaPhong FOREIGN KEY (MaPhong) REFERENCES PHONGBENH(MaPhong)
-);
 
-CREATE TABLE THIETBIYTE
+create table cabenh
 (
-	MaThietBi VARCHAR2(50) NOT NULL,
-	SoLanSD VARCHAR2(20),
-	CongDung VARCHAR2(50),
-	SoLuong INT,
-	CONSTRAINT PK_THIETBIYTE PRIMARY KEY (MaThietBi)
-);
+    mabn varchar(10),
+    mabs varchar(10),
+    mabenh varchar(50),
+    loai varchar2(20),
+    hinhthuc varchar(20),
+    ngaybatdau date,
+    ngayketthuc date,
+    tinhtrang varchar(20),
+    maphong varchar(10),
+    constraint pk_cabenh primary key (mabn,mabs,mabenh,ngaybatdau),
+    constraint fk_cabenh_mabn foreign key (mabn) references benhnhan(mabn),
+    constraint fk_cabenh_mabs foreign key (mabs) references bacsi(mabs),
+    constraint fk_cabenh_mabenh foreign key (mabenh) references benh(mabenh),
+    constraint fk_cabenh_maphong foreign key (maphong) references phongbenh (maphong)
+)
 
-CREATE TABLE DIEUPHOITHIETBI
+create table thietbiyte
 (
-	MaBN VARCHAR(10) NOT NULL,
-	MaThietBi VARCHAR(10) NOT NULL,
-	SoLuong INT,
-	CONSTRAINT PK_DIEUPHOITHIETBI PRIMARY KEY (MaBN,MaThietBi),
-	CONSTRAINT FK_DIEUPHOITHIETBI_MaBN FOREIGN KEY (MaBN) REFERENCES BENHNHAN(MaBN),
-	CONSTRAINT FK_DIEUPHOITHIETBI_MaThietBi FOREIGN KEY (MaThietBi) REFERENCES THIETBIYTE(MaThietBi)
-);
+    mathietbi varchar(10),
+    tenthietbi varchar2(50),
+    loaisd varchar2(20),
+    congdung varchar2(200),
+    soluong int,
+    constraint pk_thietbiyte primary key (mathietbi)
+)
+
+create table dieuphoithietbi
+(
+    mabn varchar(10),
+    mathietbi varchar(10),
+    soluong int,
+    ngaydieuphoi date,
+    ngayketthuc date,
+    sldu int,
+    constraint pk_dieuphoithietbi primary key (mabn,mathietbi),
+    constraint fk_dieuphoithietbi_mabn foreign key (mabn) references benhnhan(mabn),
+    constraint fk_dieuphoithietbi_mathietbi foreign key (mathietbi) references thietbiyte(mathietbi)
+)
+
+create table taikhoan
+(
+    tendangnhap varchar(10),
+    matkhau varchar(100),
+    constraint pk_taikhoan primary key (tendangnhap)
+)
