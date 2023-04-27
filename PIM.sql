@@ -123,7 +123,7 @@ create table cabenh
     mabn varchar(10),
     mabs varchar(10),
     mabenh varchar(50),
-    loai varchar2(20),
+    mucdo varchar2(20),
     hinhthuc varchar(20),
     ngaybatdau date,
     ngayketthuc date,
