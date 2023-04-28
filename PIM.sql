@@ -165,3 +165,4 @@ create table taikhoan
     matkhau varchar(100),
     constraint pk_taikhoan primary key (tendangnhap)
 )
+insert into taikhoan values ('QL001','password');
