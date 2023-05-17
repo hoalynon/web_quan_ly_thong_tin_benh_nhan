@@ -1,3 +1,5 @@
+alter SESSION set NLS_DATE_FORMAT = 'DD/MM/YYYY';
+
 CREATE TABLE BACSI
 (
 	MaBS VARCHAR(10) NOT NULL,
@@ -10,6 +12,8 @@ CREATE TABLE BACSI
 	NamPhucVu NUMBER,
 	CONSTRAINT PK_BACSI PRIMARY KEY (MaBS)
 );
+
+
 INSERT INTO BACSI VALUES ('BS001', 'Le Tam Khoa', 'Nam', null, 'An Giang', 'Binh Duong', 'Cap Cuu', 16);
 INSERT INTO BACSI VALUES ('BS002', 'Tran Minh An', 'Nam', null, 'Quang Ngai', 'Can Tho', 'Noi Soi', 18);
 INSERT INTO BACSI VALUES ('BS003', 'Truong Anh Khanh', 'Nu', null, 'Quang Tri', 'Thanh pho Da Nang', 'Nhi', 17);
