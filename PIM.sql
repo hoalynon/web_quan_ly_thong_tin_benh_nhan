@@ -3,33 +3,33 @@ CREATE TABLE BACSI
 	MaBS VARCHAR(10) NOT NULL,
 	HoTen VARCHAR2(100) NOT NULL,
 	GioiTinh VARCHAR(10),
+	NgaySinh DATE,
 	QueQuan VARCHAR(100),
 	NoiOHienTai VARCHAR(100),
 	TenKhoa VARCHAR(50),
 	NamPhucVu NUMBER,
 	CONSTRAINT PK_BACSI PRIMARY KEY (MaBS)
 );
-
-INSERT INTO BACSI VALUES ('BS001', 'Phan Tri Lien', 'Nu', 'Thanh pho Can Tho', 'Thanh pho Ha Noi', 'Cap Cuu', 19);
-INSERT INTO BACSI VALUES ('BS002', 'Phan Kim Duong', 'Nam', 'Phu Tho', 'Can Tho', 'Ung Buou', 24);
-INSERT INTO BACSI VALUES ('BS003', 'Hoang Kim Hoa', 'Nam', 'Thanh pho Ha Noi', 'Thanh pho Da Nang', 'Truyen Nhiem', 13);
-INSERT INTO BACSI VALUES ('BS004', 'Pham Thu Khanh', 'Nu', 'Long An', 'Dong Nai', 'Cap Cuu', 3);
-INSERT INTO BACSI VALUES ('BS005', 'Phan Kim Phuong', 'Nu', 'Quang Ngai', 'Thanh pho Ho Chi Minh', 'Truyen Nhiem', 16);
-INSERT INTO BACSI VALUES ('BS006', 'Pham Kim Khanh', 'Nu', 'Khanh Hoa', 'Thanh pho Da Nang', 'Nhi', 28);
-INSERT INTO BACSI VALUES ('BS007', 'Le Tam Hieu', 'Nu', 'Quang Ninh', 'Binh Duong', 'Cap Cuu', 29);
-INSERT INTO BACSI VALUES ('BS008', 'Vo Tam Tu', 'Nu', 'Khanh Hoa', 'Binh Duong', 'Noi Soi', 7);
-INSERT INTO BACSI VALUES ('BS009', 'Tran Kim Phuong', 'Nu', 'Thai Nguyen', 'Thanh pho Ha Noi', 'Ung Buou', 9);
-INSERT INTO BACSI VALUES ('BS010', 'Phan Thu An', 'Nam', 'Ben Tre', 'Dong Nai', 'Noi Soi', 22);
-INSERT INTO BACSI VALUES ('BS011', 'Pham Van Duong', 'Nu', 'An Giang', 'Can Tho', 'Nhi', 14);
-INSERT INTO BACSI VALUES ('BS012', 'Le Thanh Nguyen', 'Nu', 'Tuyen Quang', 'Thanh pho Ho Chi Minh', 'Truyen Nhiem', 21);
-INSERT INTO BACSI VALUES ('BS013', 'Hoang Tri Quynh', 'Nu', 'Lam Dong', 'Thanh pho Ha Noi', 'Cap Cuu', 3);
-INSERT INTO BACSI VALUES ('BS014', 'Hoang Anh Hieu', 'Nam', 'Quang Ninh', 'Thanh pho Ho Chi Minh', 'Cap Cuu', 6);
-INSERT INTO BACSI VALUES ('BS015', 'Hoang Minh Tu', 'Nam', 'Thanh pho Da Nang', 'Can Tho', 'Truyen Nhiem', 3);
-INSERT INTO BACSI VALUES ('BS016', 'Phan Ngoc Binh', 'Nam', 'Thanh pho Ha Noi', 'Thanh pho Ho Chi Minh', 'Cap Cuu', 18);
-INSERT INTO BACSI VALUES ('BS017', 'Pham Van Tu', 'Nam', 'Quang Ninh', 'Thanh pho Ho Chi Minh', 'Nhi', 26);
-INSERT INTO BACSI VALUES ('BS018', 'Nguyen Anh Nguyen', 'Nam', 'Thanh pho Ha Noi', 'Dong Nai', 'Ung Buou', 10);
-INSERT INTO BACSI VALUES ('BS019', 'Pham Minh Binh', 'Nu', 'An Giang', 'Can Tho', 'Cap Cuu', 24);
-INSERT INTO BACSI VALUES ('BS020', 'Le Thi Khanh', 'Nu', 'Tuyen Quang', 'Can Tho', 'Ung Buou', 23);
+INSERT INTO BACSI VALUES ('BS001', 'Le Tam Khoa', 'Nam', null, 'An Giang', 'Binh Duong', 'Cap Cuu', 16);
+INSERT INTO BACSI VALUES ('BS002', 'Tran Minh An', 'Nam', null, 'Quang Ngai', 'Can Tho', 'Noi Soi', 18);
+INSERT INTO BACSI VALUES ('BS003', 'Truong Anh Khanh', 'Nu', null, 'Quang Tri', 'Thanh pho Da Nang', 'Nhi', 17);
+INSERT INTO BACSI VALUES ('BS004', 'Phan Ngoc Quynh', 'Nu', null, 'Thanh Hoa', 'Binh Duong', 'Nhi', 22);
+INSERT INTO BACSI VALUES ('BS005', 'Nguyen Thanh Binh', 'Nu', null, 'Thanh pho Ho Chi Minh', 'Thanh pho Ho Chi Minh', 'Noi Soi', 8);
+INSERT INTO BACSI VALUES ('BS006', 'Phan Minh Lien', 'Nu', null, 'Dong Nai', 'Thanh pho Da Nang', 'Noi Soi', 25);
+INSERT INTO BACSI VALUES ('BS007', 'Nguyen Minh Duong', 'Nu', null, 'Thanh Hoa', 'Can Tho', 'Noi Soi', 12);
+INSERT INTO BACSI VALUES ('BS008', 'Truong Tri Khanh', 'Nam', null, 'Quang Ninh', 'Thanh pho Ha Noi', 'Truyen Nhiem', 24);
+INSERT INTO BACSI VALUES ('BS009', 'Phan Thanh An', 'Nam', null, 'Binh Duong', 'Thanh pho Ha Noi', 'Nhi', 4);
+INSERT INTO BACSI VALUES ('BS010', 'Phan Minh Ha', 'Nam', null, 'An Giang', 'Dong Nai', 'Ung Buou', 1);
+INSERT INTO BACSI VALUES ('BS011', 'Le Tam Khoa', 'Nam', null, 'Thai Nguyen', 'Dong Nai', 'Ung Buou', 14);
+INSERT INTO BACSI VALUES ('BS012', 'Vo Thanh Ha', 'Nam', null, 'Thanh pho Hai Phong', 'Can Tho', 'Cap Cuu', 16);
+INSERT INTO BACSI VALUES ('BS013', 'Hoang Anh Tu', 'Nam', null, 'Quang Tri', 'Dong Nai', 'Ung Buou', 7);
+INSERT INTO BACSI VALUES ('BS014', 'Nguyen Tam Hoa', 'Nam', null, 'Quang Tri', 'Thanh pho Da Nang', 'Ung Buou', 3);
+INSERT INTO BACSI VALUES ('BS015', 'Nguyen Tri Hao', 'Nu', null, 'Thanh pho Ho Chi Minh', 'Thanh pho Da Nang', 'Cap Cuu', 2);
+INSERT INTO BACSI VALUES ('BS016', 'Tran Kim Khoa', 'Nam', null, 'Binh Duong', 'Dong Nai', 'Nhi', 14);
+INSERT INTO BACSI VALUES ('BS017', 'Pham Tri Hao', 'Nam', null, 'Thanh pho Da Nang', 'Thanh pho Ha Noi', 'Cap Cuu', 21);
+INSERT INTO BACSI VALUES ('BS018', 'Pham Kim Duong', 'Nam', null, 'Khanh Hoa', 'Can Tho', 'Noi Soi', 30);
+INSERT INTO BACSI VALUES ('BS019', 'Le Tam Hao', 'Nam', null, 'Dak Lak', 'Thanh pho Ho Chi Minh', 'Nhi', 3);
+INSERT INTO BACSI VALUES ('BS020', 'Le Tri Hoa', 'Nam', null, 'Quang Tri', 'Thanh pho Da Nang', 'Nhi', 29);
 
 select * from BACSI;
 
