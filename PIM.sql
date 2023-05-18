@@ -158,7 +158,7 @@ create table dieuphoithietbi
     ngaydieuphoi timestamp,
     ngayketthuc timestamp,
     sldu int,
-    constraint pk_dieuphoithietbi primary key (mabn,mathietbi),
+    constraint pk_dieuphoithietbi primary key (mabn,mathietbi,ngaydieuphoi),
     constraint fk_dieuphoithietbi_mabn foreign key (mabn) references benhnhan(mabn),
     constraint fk_dieuphoithietbi_mathietbi foreign key (mathietbi) references thietbiyte(mathietbi)
 )
