@@ -42,22 +42,21 @@ CREATE TABLE BENHNHAN
 	MaBN VARCHAR(10) NOT NULL,
 	HoTen VARCHAR2(100) NOT NULL,
 	GioiTinh VARCHAR(10),
+	NgaySinh VARCHAR2(10),
 	QueQuan VARCHAR(100),
 	NoiOHienTai VARCHAR(100),
-	Loai VARCHAR(20),
 	CONSTRAINT PK_BENHNHAN PRIMARY KEY (MaBN)
 );
 
 
-INSERT INTO BENHNHAN VALUES ('BN001', 'Tran Anh Lien', 'Nu', '21/03/1992', 'Thanh pho Ha Noi', 'Thanh pho Ha Noi');
-INSERT INTO BENHNHAN VALUES ('BN002', 'Le Ngoc Quynh', 'Nu', '15/07/1985', 'Lam Dong', 'Can Tho');
-INSERT INTO BENHNHAN VALUES ('BN003', 'Vo Tri Quynh', 'Nam', '03/09/1988', 'Nam Dinh', 'Thanh pho Da Nang');
-INSERT INTO BENHNHAN VALUES ('BN004', 'Nguyen Anh Quynh', 'Nu', '10/12/1990', 'Nghe An', 'Thanh pho Ha Noi');
-INSERT INTO BENHNHAN VALUES ('BN005', 'Hoang Minh Ha', 'Nu', '28/05/1994', 'Dak Lak', 'Binh Duong');
-INSERT INTO BENHNHAN VALUES ('BN006', 'Pham Minh An', 'Nu', '17/08/1987', 'Dak Lak', 'Thanh pho Ho Chi Minh');
-INSERT INTO BENHNHAN VALUES ('BN007', 'Le Thi Phuong', 'Nu', '05/11/1991', 'Dong Nai', 'Thanh pho Ha Noi');
-INSERT INTO BENHNHAN VALUES ('BN008', 'Vo Anh Khanh', 'Nam', '09/02/1984', 'Thai Nguyen', 'Thanh pho Da Nang');
-INSERT INTO BENHNHAN VALUES ('BN009', 'Tran Tam Tu', 'Nam', '12/06/1989', 'Long An', 'Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN001', 'Tran Anh Lien', 'Nu', '21/03/1992', '36 Duong Le Loi, Phuong Ben Nghe, Quan 1, Thanh pho Ho Chi Minh', '42 Duong Nguyen Hue, Phuong Ben Thanh, Quan 1, Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN002', 'Le Ngoc Quynh', 'Nu', '15/07/1985', '18 Duong Tran Phu, Phuong Loc Tho, Thanh pho Nha Trang, Tinh Khanh Hoa', '18 Duong Tran Phu, Phuong Loc Tho, Thanh pho Nha Trang, Tinh Khanh Hoa');
+INSERT INTO BENHNHAN VALUES ('BN003', 'Vo Tri Quynh', 'Nam', '03/09/1988', '23 Duong Tran Hung Dao, Phuong Vinh Thanh, Thanh pho Rach Gia, Tinh Kien Giang', '12 Duong Hung Vuong, Phuong Le Loi, Thanh pho Hue, Tinh Thua Thien Hue');
+INSERT INTO BENHNHAN VALUES ('BN005', 'Hoang Minh Ha', 'Nu', '28/05/1994', '30 Duong Ham Nghi, Phuong Nguyen Thai Binh, Quan 1, Thanh pho Ho Chi Minh', '39 Duong Le Duong, Phuong Ben Nghe, Quan 1, Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN006', 'Pham Minh An', 'Nu', '17/08/1987', '30 Duong Ham Nghi, Phuong Nguyen Thai Binh, Quan 1, Thanh pho Ho Chi Minh', '30 Duong Ham Nghi, Phuong Nguyen Thai Binh, Quan 1, Thanh pho Ho Chi Minh');
+INSERT INTO BENHNHAN VALUES ('BN007', 'Le Thi Phuong', 'Nu', '05/11/1991', '44 Duong Tran Quang Dieu, Phuong Phuoc Ninh, Thanh pho Da Nang', '44 Duong Tran Quang Dieu, Phuong Phuoc Ninh, Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN008', 'Vo Anh Khanh', 'Nam', '09/02/1984', '44 Duong Tran Quang Dieu, Phuong Phuoc Ninh, Thanh pho Da Nang', '44 Duong Tran Quang Dieu, Phuong Phuoc Ninh, Thanh pho Da Nang');
+INSERT INTO BENHNHAN VALUES ('BN009', 'Tran Tam Tu', 'Nam', '12/06/1989', 'Long An', '63 Duong Nguyen Thi Minh Khai, Phuong Ben Nghe, Quan 1, Thanh pho Ho Chi Minh');
 INSERT INTO BENHNHAN VALUES ('BN010', 'Truong Kim An', 'Nam', '08/04/1993', 'Thanh pho Hai Phong', 'Dong Nai');
 INSERT INTO BENHNHAN VALUES ('BN011', 'Nguyen Minh Phuong', 'Nam', '27/10/1997', 'Tuyen Quang', 'Dong Nai');
 INSERT INTO BENHNHAN VALUES ('BN012', 'Tran Thi Hao', 'Nam', '14/09/1986', 'Thai Nguyen', 'Thanh pho Da Nang');
