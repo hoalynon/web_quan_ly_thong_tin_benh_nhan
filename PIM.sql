@@ -269,3 +269,4 @@ create table taikhoan
 insert into taikhoan values ('QL001', null);
 insert into taikhoan values ('BS001', null);
 insert into taikhoan values ('BN001', null);
+commit;
