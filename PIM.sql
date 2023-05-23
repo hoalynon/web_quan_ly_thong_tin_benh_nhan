@@ -243,7 +243,8 @@ create table thietbiyte
     tenthietbi varchar2(50),
     loaisd varchar2(20),
     congdung varchar2(200),
-    soluong int,
+    sltong int,
+    slconlai int,
     constraint pk_thietbiyte primary key (mathietbi)
 )
 
@@ -254,7 +255,6 @@ create table dieuphoithietbi
     soluong int,
     ngaydieuphoi timestamp,
     ngayketthuc timestamp,
-    sldu int,
     constraint pk_dieuphoithietbi primary key (mabn,mathietbi,ngaydieuphoi),
     constraint fk_dieuphoithietbi_mabn foreign key (mabn) references benhnhan(mabn),
     constraint fk_dieuphoithietbi_mathietbi foreign key (mathietbi) references thietbiyte(mathietbi)
