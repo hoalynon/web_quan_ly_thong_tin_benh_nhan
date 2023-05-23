@@ -1,3 +1,25 @@
+delete from dieuphoithietbi;
+delete from cabenh;
+delete from thietbiyte;
+delete from phongbenh;
+delete from benh;
+delete from benhnhan;
+delete from bacsi;
+delete from taikhoan;
+
+commit;
+
+drop table dieuphoithietbi;
+drop table cabenh;
+drop table thietbiyte;
+drop table phongbenh;
+drop table benh;
+drop table benhnhan;
+drop table bacsi;
+drop table taikhoan;
+
+commit;
+
 alter SESSION set NLS_DATE_FORMAT = 'DD/MM/YYYY';
 
 CREATE TABLE BACSI
@@ -12,7 +34,98 @@ CREATE TABLE BACSI
 	NamPhucVu NUMBER,
 	CONSTRAINT PK_BACSI PRIMARY KEY (MaBS)
 );
+commit;
 
+CREATE TABLE BENHNHAN
+(
+	MaBN VARCHAR(10) NOT NULL,
+	HoTen VARCHAR2(100) NOT NULL,
+	GioiTinh VARCHAR(10),
+	NgaySinh VARCHAR2(10),
+	QueQuan VARCHAR(100),
+	NoiOHienTai VARCHAR(100),
+	CONSTRAINT PK_BENHNHAN PRIMARY KEY (MaBN)
+);
+
+commit;
+
+create table benh
+(
+    mabenh varchar(50),
+    tenbenh varchar2(100),
+    tenkhoa varchar(50),
+    constraint pk_benh primary key (mabenh)
+);
+
+commit;
+
+create table phongbenh
+(
+    maphong varchar(10),
+    loai varchar(20),
+    toa number,
+    lau number,
+    succhua int,
+    controng int,
+    constraint pk_phongbenh primary key (maphong)
+);
+commit;
+
+create table cabenh
+(
+    mabn varchar(10),
+    mabs varchar(10),
+    mabenh varchar(50),
+    mucdo varchar2(20),
+    hinhthuc varchar(20),
+    ngaybatdau timestamp,
+    ngayketthuc timestamp,
+    tinhtrang varchar(20),
+    maphong varchar(10),
+    constraint pk_cabenh primary key (mabn,mabs,mabenh,ngaybatdau),
+    constraint fk_cabenh_mabn foreign key (mabn) references benhnhan(mabn),
+    constraint fk_cabenh_mabs foreign key (mabs) references bacsi(mabs),
+    constraint fk_cabenh_mabenh foreign key (mabenh) references benh(mabenh),
+    constraint fk_cabenh_maphong foreign key (maphong) references phongbenh (maphong)
+);
+
+commit;
+
+create table thietbiyte
+(
+    mathietbi varchar(10),
+    tenthietbi varchar2(50),
+    loaisd varchar2(20),
+    congdung varchar2(200),
+    sltong int,
+    slconlai int,
+    constraint pk_thietbiyte primary key (mathietbi)
+);
+
+commit;
+
+create table dieuphoithietbi
+(
+    mabn varchar(10),
+    mathietbi varchar(10),
+    soluong int,
+    ngaydieuphoi timestamp,
+    ngayketthuc timestamp,
+    constraint pk_dieuphoithietbi primary key (mabn,mathietbi,ngaydieuphoi),
+    constraint fk_dieuphoithietbi_mabn foreign key (mabn) references benhnhan(mabn),
+    constraint fk_dieuphoithietbi_mathietbi foreign key (mathietbi) references thietbiyte(mathietbi)
+);
+
+commit;
+
+create table taikhoan
+(
+    tendangnhap varchar(10),
+    matkhau varchar(100),
+    constraint pk_taikhoan primary key (tendangnhap)
+);
+
+commit;
 
 INSERT INTO BACSI VALUES ('BS001', 'Le Tam Khoa', 'Nam', '08/04/1987', '53 Nguyen Hue, My Tho, Tien Giang', '123 Le Loi, Thanh pho Thu Dau Mot, Binh Duong', 'Cap Cuu', 6);
 INSERT INTO BACSI VALUES ('BS002', 'Tran Minh An', 'Nam', '25/09/1976', '35 Tran Phu, Le Loi, Quang Ngai', '456 Le Duan, Cam Le, Da Nang', 'Noi Soi', 17);
@@ -35,19 +148,7 @@ INSERT INTO BACSI VALUES ('BS018', 'Pham Kim Duong', 'Nam', '10/02/1977', '67 Tr
 INSERT INTO BACSI VALUES ('BS019', 'Le Tam Hao', 'Nam', '05/09/1971', '89 Nguyen Chi Thanh, Buon Ma Thuot, Dak Lak', '753 Nguyen Van Linh, Buon Ma Thuot, Dak Lak', 'Nhi', 22);
 INSERT INTO BACSI VALUES ('BS020', 'Le Tri Hoa', 'Nam', '27/11/1972', '36 Tran Hung Dao, Cam Le, Da Nang', '963 Le Duan, Cam Le, Da Nang', 'Nhi', 20);
 
-select * from BACSI;
-
-CREATE TABLE BENHNHAN
-(
-	MaBN VARCHAR(10) NOT NULL,
-	HoTen VARCHAR2(100) NOT NULL,
-	GioiTinh VARCHAR(10),
-	NgaySinh VARCHAR2(10),
-	QueQuan VARCHAR(100),
-	NoiOHienTai VARCHAR(100),
-	CONSTRAINT PK_BENHNHAN PRIMARY KEY (MaBN)
-);
-
+commit;
 
 INSERT INTO BENHNHAN VALUES ('BN001', 'Tran Anh Lien', 'Nu', '21/03/1992', '36 Duong Le Loi, Phuong Ben Nghe, Quan 1, Thanh pho Ho Chi Minh', '42 Duong Nguyen Hue, Phuong Ben Thanh, Quan 1, Thanh pho Ho Chi Minh');
 INSERT INTO BENHNHAN VALUES ('BN002', 'Le Ngoc Quynh', 'Nu', '15/07/1985', '18 Duong Tran Phu, Phuong Loc Tho, Thanh pho Nha Trang, Tinh Khanh Hoa', '57 Duong Le Hong Phong, Phuong 1, Thanh pho Vung Tau, Tinh Ba Ria - Vung Tau');
@@ -100,15 +201,7 @@ INSERT INTO BENHNHAN VALUES ('BN048', 'Truong Thi Huyen', 'Nu', '27/06/1987', '5
 INSERT INTO BENHNHAN VALUES ('BN049', 'Vo Minh Hieu', 'Nam', '14/10/1993', '29 Duong Nguyen Hue, Phuong Ben Thanh, Quan 1, Thanh pho Ho Chi Minh', '44 Duong Tran Quang Dieu, Phuong Thac Gian, Quan Cam Le, Thanh pho Da Nang');
 INSERT INTO BENHNHAN VALUES ('BN050', 'Nguyen Van Tu', 'Nam', '03/01/1989', '61 Duong Tran Hung Dao, Phuong Van Thanh, Thanh pho Vinh, Tinh Nghe An', '18 Duong Le Hong Phong, Phuong 5, Thanh pho Vung Tau, Tinh Ba Ria - Vung Tau');
 
-select * from BENHNHAN;
-
-create table benh
-(
-    mabenh varchar(50),
-    tenbenh varchar2(100),
-    tenkhoa varchar(50),
-    constraint pk_benh primary key (mabenh)
-)
+commit;
 
 INSERT INTO BENH VALUES ('BE001', 'Viem Tai', 'Nhi');
 INSERT INTO BENH VALUES ('BE002', 'Viem Thanh Quan', 'Nhi');
@@ -136,16 +229,7 @@ INSERT INTO BENH VALUES ('BE023', 'Cat Ruot Thua', 'Noi Soi');
 INSERT INTO BENH VALUES ('BE024', 'Soi Than', 'Noi Soi');
 INSERT INTO BENH VALUES ('BE025', 'Thoat Vi Dia Dem', 'Noi Soi');
 
-create table phongbenh
-(
-    maphong varchar(10),
-    loai varchar(20),
-    toa number,
-    lau number,
-    succhua int,
-    controng int,
-    constraint pk_phongbenh primary key (maphong)
-)
+commit;
 
 INSERT INTO PHONGBENH VALUES ('PH101', 'Thuong', 1, 1, 8, 8);
 INSERT INTO PHONGBENH VALUES ('PH102', 'Thuong', 1, 1, 8, 8);
@@ -218,55 +302,76 @@ INSERT INTO PHONGBENH VALUES ('PH338', 'Cach ly', 3, 5, 1, 1);
 INSERT INTO PHONGBENH VALUES ('PH339', 'Cach ly', 3, 5, 1, 1);
 INSERT INTO PHONGBENH VALUES ('PH340', 'Cach ly', 3, 5, 1, 1);
 
+commit;
 
-create table cabenh
-(
-    mabn varchar(10),
-    mabs varchar(10),
-    mabenh varchar(50),
-    mucdo varchar2(20),
-    hinhthuc varchar(20),
-    ngaybatdau timestamp,
-    ngayketthuc timestamp,
-    tinhtrang varchar(20),
-    maphong varchar(10),
-    constraint pk_cabenh primary key (mabn,mabs,mabenh,ngaybatdau),
-    constraint fk_cabenh_mabn foreign key (mabn) references benhnhan(mabn),
-    constraint fk_cabenh_mabs foreign key (mabs) references bacsi(mabs),
-    constraint fk_cabenh_mabenh foreign key (mabenh) references benh(mabenh),
-    constraint fk_cabenh_maphong foreign key (maphong) references phongbenh (maphong)
-)
-
-create table thietbiyte
-(
-    mathietbi varchar(10),
-    tenthietbi varchar2(50),
-    loaisd varchar2(20),
-    congdung varchar2(200),
-    sltong int,
-    slconlai int,
-    constraint pk_thietbiyte primary key (mathietbi)
-)
-
-create table dieuphoithietbi
-(
-    mabn varchar(10),
-    mathietbi varchar(10),
-    soluong int,
-    ngaydieuphoi timestamp,
-    ngayketthuc timestamp,
-    constraint pk_dieuphoithietbi primary key (mabn,mathietbi,ngaydieuphoi),
-    constraint fk_dieuphoithietbi_mabn foreign key (mabn) references benhnhan(mabn),
-    constraint fk_dieuphoithietbi_mathietbi foreign key (mathietbi) references thietbiyte(mathietbi)
-)
-
-create table taikhoan
-(
-    tendangnhap varchar(10),
-    matkhau varchar(100),
-    constraint pk_taikhoan primary key (tendangnhap)
-)
 insert into taikhoan values ('QL001', null);
 insert into taikhoan values ('BS001', null);
 insert into taikhoan values ('BN001', null);
+commit;
+delete from cabenh;
+INSERT INTO CABENH VALUES ('BN001', 'BS018', 'BE019', 'Cap cuu', 'Cach ly', TO_TIMESTAMP('07/05/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH115');
+INSERT INTO CABENH VALUES ('BN002', 'BS006', 'BE007', 'Nang', 'Tai gia', TO_TIMESTAMP('20/02/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('25/02/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Giam sat', 'PH202');
+INSERT INTO CABENH VALUES ('BN003', 'BS013', 'BE021', 'Khong cap cuu', 'Nhap vien', TO_TIMESTAMP('15/06/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('20/06/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Trieu chung', 'PH110');
+INSERT INTO CABENH VALUES ('BN004', 'BS014', 'BE016', 'Cham soc dac biet', 'Cach ly', TO_TIMESTAMP('30/09/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('06/10/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH208');
+INSERT INTO CABENH VALUES ('BN005', 'BS011', 'BE015', 'Hoi suc', 'Nhap vien', TO_TIMESTAMP('14/07/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('20/07/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Giam sat', 'PH117');
+INSERT INTO CABENH VALUES ('BN006', 'BS004', 'BE011', 'Nang', 'Tai gia', TO_TIMESTAMP('28/11/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('04/12/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Dieu tri', 'PH204');
+INSERT INTO CABENH VALUES ('BN007', 'BS010', 'BE004', 'Cap cuu', 'Cach ly', TO_TIMESTAMP('02/08/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('08/08/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Cham soc', 'PH301');
+INSERT INTO CABENH VALUES ('BN008', 'BS001', 'BE012', 'Khong cap cuu', 'Nhap vien', TO_TIMESTAMP('09/04/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('15/04/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH108');
+INSERT INTO CABENH VALUES ('BN009', 'BS005', 'BE009', 'Hoi suc', 'Cach ly', TO_TIMESTAMP('13/12/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('20/12/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Dieu tri', 'PH116');
+INSERT INTO CABENH VALUES ('BN010', 'BS020', 'BE013', 'Cham soc dac biet', 'Tai gia', TO_TIMESTAMP('27/03/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('02/04/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Trieu chung', 'PH118');
+INSERT INTO CABENH VALUES ('BN011', 'BS009', 'BE006', 'Cap cuu', 'Nhap vien', TO_TIMESTAMP('10/05/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('16/05/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Giam sat', 'PH209');
+INSERT INTO CABENH VALUES ('BN012', 'BS019', 'BE018', 'Nang', 'Tai gia', TO_TIMESTAMP('23/02/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('28/02/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH310');
+INSERT INTO CABENH VALUES ('BN013', 'BS017', 'BE001', 'Khong cap cuu', 'Nhap vien', TO_TIMESTAMP('19/07/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('25/07/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Dieu tri', 'PH113');
+INSERT INTO CABENH VALUES ('BN014', 'BS008', 'BE010', 'Hoi suc', 'Cach ly', TO_TIMESTAMP('06/11/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/11/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Cham soc', 'PH202');
+INSERT INTO CABENH VALUES ('BN015', 'BS016', 'BE002', 'Cap cuu', 'Nhap vien', TO_TIMESTAMP('11/08/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('17/08/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Giam sat', 'PH105');
+INSERT INTO CABENH VALUES ('BN016', 'BS012', 'BE014', 'Cham soc dac biet', 'Cach ly', TO_TIMESTAMP('25/01/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('31/01/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Trieu chung', 'PH307');
+INSERT INTO CABENH VALUES ('BN017', 'BS015', 'BE005', 'Cap cuu', 'Tai gia', TO_TIMESTAMP('09/09/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('15/09/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH205');
+INSERT INTO CABENH VALUES ('BN018', 'BS003', 'BE021', 'Hoi suc', 'Nhap vien', TO_TIMESTAMP('16/05/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('23/05/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Dieu tri', 'PH109');
+INSERT INTO CABENH VALUES ('BN019', 'BS007', 'BE020', 'Cham soc dac biet', 'Tai gia', TO_TIMESTAMP('20/04/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('26/04/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Giam sat', 'PH203');
+INSERT INTO CABENH VALUES ('BN020', 'BS002', 'BE017', 'Cap cuu', 'Nhap vien', TO_TIMESTAMP('01/03/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('06/03/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Cham soc', 'PH307');
+INSERT INTO CABENH VALUES ('BN021', 'BS004', 'BE022', 'Nang', 'Tai gia', TO_TIMESTAMP('14/12/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('20/12/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH306');
+INSERT INTO CABENH VALUES ('BN022', 'BS011', 'BE008', 'Khong cap cuu', 'Nhap vien', TO_TIMESTAMP('28/08/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('03/09/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Dieu tri', 'PH307');
+INSERT INTO CABENH VALUES ('BN023', 'BS015', 'BE003', 'Hoi suc', 'Cach ly', TO_TIMESTAMP('05/06/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('10/06/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Giam sat', 'PH107');
+INSERT INTO CABENH VALUES ('BN024', 'BS019', 'BE012', 'Cham soc dac biet', 'Cach ly', TO_TIMESTAMP('11/09/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('17/09/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Trieu chung', 'PH208');
+INSERT INTO CABENH VALUES ('BN025', 'BS003', 'BE017', 'Cap cuu', 'Tai gia', TO_TIMESTAMP('24/11/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('30/11/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH111');
+INSERT INTO CABENH VALUES ('BN026', 'BS006', 'BE021', 'Nang', 'Nhap vien', TO_TIMESTAMP('08/07/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('14/07/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Dieu tri', 'PH315');
+INSERT INTO CABENH VALUES ('BN027', 'BS008', 'BE013', 'Khong cap cuu', 'Tai gia', TO_TIMESTAMP('16/04/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('22/04/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Giam sat', 'PH207');
+INSERT INTO CABENH VALUES ('BN028', 'BS014', 'BE010', 'Hoi suc', 'Cach ly', TO_TIMESTAMP('19/02/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('25/02/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Cham soc', 'PH117');
+INSERT INTO CABENH VALUES ('BN029', 'BS010', 'BE005', 'Cham soc dac biet', 'Nhap vien', TO_TIMESTAMP('02/10/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('08/10/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Trieu chung', 'PH210');
+INSERT INTO CABENH VALUES ('BN030', 'BS017', 'BE006', 'Cap cuu', 'Cach ly', TO_TIMESTAMP('13/07/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('19/07/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Dieu tri', 'PH302');
+INSERT INTO CABENH VALUES ('BN031', 'BS013', 'BE009', 'Khong cap cuu', 'Nhap vien', TO_TIMESTAMP('16/09/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('22/09/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Giam sat', 'PH205');
+INSERT INTO CABENH VALUES ('BN032', 'BS005', 'BE018', 'Cham soc dac biet', 'Tai gia', TO_TIMESTAMP('29/01/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('04/02/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Trieu chung', 'PH309');
+INSERT INTO CABENH VALUES ('BN033', 'BS012', 'BE014', 'Hoi suc', 'Cach ly', TO_TIMESTAMP('03/08/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('09/08/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Dieu tri', 'PH114');
+INSERT INTO CABENH VALUES ('BN034', 'BS019', 'BE021', 'Cap cuu', 'Tai gia', TO_TIMESTAMP('10/12/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('16/12/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH210');
+INSERT INTO CABENH VALUES ('BN035', 'BS017', 'BE012', 'Nang', 'Nhap vien', TO_TIMESTAMP('22/06/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('28/06/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Giam sat', 'PH201');
+INSERT INTO CABENH VALUES ('BN036', 'BS003', 'BE007', 'Cham soc dac biet', 'Cach ly', TO_TIMESTAMP('07/03/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('13/03/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH115');
+INSERT INTO CABENH VALUES ('BN037', 'BS010', 'BE019', 'Khong cap cuu', 'Tai gia', TO_TIMESTAMP('20/05/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('26/05/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Trieu chung', 'PH209');
+INSERT INTO CABENH VALUES ('BN038', 'BS016', 'BE011', 'Hoi suc', 'Nhap vien', TO_TIMESTAMP('04/02/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('10/02/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Giam sat', 'PH206');
+INSERT INTO CABENH VALUES ('BN039', 'BS007', 'BE002', 'Cap cuu', 'Tai gia', TO_TIMESTAMP('17/11/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('23/11/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH304');
+INSERT INTO CABENH VALUES ('BN040', 'BS002', 'BE020', 'Nang', 'Nhap vien', TO_TIMESTAMP('30/09/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('06/10/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Dieu tri', 'PH113');
+INSERT INTO CABENH VALUES ('BN041', 'BS014', 'BE015', 'Khong cap cuu', 'Nhap vien', TO_TIMESTAMP('13/07/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('19/07/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Cham soc', 'PH301');
+INSERT INTO CABENH VALUES ('BN042', 'BS011', 'BE003', 'Hoi suc', 'Cach ly', TO_TIMESTAMP('26/02/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('03/03/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Trieu chung', 'PH113');
+INSERT INTO CABENH VALUES ('BN043', 'BS006', 'BE008', 'Cap cuu', 'Tai gia', TO_TIMESTAMP('09/01/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('15/01/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH109');
+INSERT INTO CABENH VALUES ('BN044', 'BS018', 'BE006', 'Nang', 'Nhap vien', TO_TIMESTAMP('22/10/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('28/10/200100:00:00','DD/MM/YYYY HH24:MI:SS'), 'Dieu tri', 'PH208');
+INSERT INTO CABENH VALUES ('BN045', 'BS013', 'BE010', 'Cham soc dac biet', 'Tai gia', TO_TIMESTAMP('03/05/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('09/05/2000 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Giam sat', 'PH116');
+INSERT INTO CABENH VALUES ('BN046', 'BS016', 'BE022', 'Khong cap cuu', 'Nhap vien', TO_TIMESTAMP('17/03/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('23/03/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH120');
+INSERT INTO CABENH VALUES ('BN047', 'BS002', 'BE013', 'Hoi suc', 'Cach ly', TO_TIMESTAMP('29/12/2002 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('04/01/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Trieu chung', 'PH206');
+INSERT INTO CABENH VALUES ('BN048', 'BS015', 'BE005', 'Cap cuu', 'Tai gia', TO_TIMESTAMP('11/09/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('17/09/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Dieu tri', 'PH203');
+INSERT INTO CABENH VALUES ('BN049', 'BS010', 'BE014', 'Nang', 'Nhap vien', TO_TIMESTAMP('25/06/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('01/07/2001 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Giam sat', 'PH306');
+INSERT INTO CABENH VALUES ('BN050', 'BS008', 'BE017', 'Cham soc dac biet', 'Cach ly', TO_TIMESTAMP('08/04/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('14/04/2003 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH201');
+
+commit;
+
+INSERT INTO THIETBIYTE VALUES ('TB001', 'Nhiet ke', 'Tai su dung', 'Do nhiet do co the', 1201, 1201);
+INSERT INTO THIETBIYTE VALUES ('TB002', 'May huyet ap', 'Tai su dung', 'Do huyet ap', 145, 145);
+INSERT INTO THIETBIYTE VALUES ('TB003', 'Binh oxy', '1 lan', 'Cung cap oxy', 546, 546);
+INSERT INTO THIETBIYTE VALUES ('TB004', 'May chup X-quang', 'Tai su dung', 'Tao hinh anh X-quang', 55, 55);
+INSERT INTO THIETBIYTE VALUES ('TB005', 'May sieu am', 'Tai su dung', 'Tao hinh anh sieu am', 43, 43);
+INSERT INTO THIETBIYTE VALUES ('TB006', 'May ECG', 'Tai su dung', 'Do hoat dong dien cua tim', 237, 237);
+INSERT INTO THIETBIYTE VALUES ('TB007', 'Bang dieu khien tiem', 'Tai su dung', 'Kiem soat tiem thuoc va dung dich',378, 378);
+INSERT INTO THIETBIYTE VALUES ('TB008', 'Dao phau thuat', 'Tai su dung', 'Cat va mo', 878, 878);
+INSERT INTO THIETBIYTE VALUES ('TB009', 'Den noi soi', 'Tai su dung', 'Kiem tra va can thiep noi soi', 179, 179);
+INSERT INTO THIETBIYTE VALUES ('TB010', 'May ho hap nhan tao', 'Tai su dung', 'Ho tro ho hap', 412, 412);
+INSERT INTO THIETBIYTE VALUES ('TB011', 'Ong tiem', '1 lan', 'Tiem thuoc cho benh nhan', 412, 412);
+
 commit;
