@@ -65,8 +65,8 @@ create table phongbenh
     loai varchar(20),
     toa number,
     lau number,
-    succhua int,
-    controng int,
+    succhua number,
+    controng number,
     constraint pk_phongbenh primary key (maphong)
 );
 commit;
@@ -98,8 +98,8 @@ create table thietbiyte
     tenthietbi varchar2(50),
     loaisd varchar2(20),
     congdung varchar2(200),
-    sltong int,
-    slconlai int,
+    sltong number,
+    slconlai number,
     constraint pk_thietbiyte primary key (mathietbi)
 );
 
@@ -109,7 +109,7 @@ create table dieuphoithietbi
 (
     maca varchar(20),
     mathietbi varchar(10),
-    soluong int,
+    soluong number,
     ngaydieuphoi timestamp,
     ngayketthuc timestamp,
     constraint pk_dieuphoithietbi primary key (maca,mathietbi,ngaydieuphoi),
