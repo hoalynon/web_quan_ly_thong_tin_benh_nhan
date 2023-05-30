@@ -306,8 +306,11 @@ INSERT INTO PHONGBENH VALUES ('PH340', 'Cach ly', 3, 5, 1, 1);
 commit;
 
 insert into taikhoan values ('QL001', null);
+insert into taikhoan values ('QL002', null);
 insert into taikhoan values ('BS001', null);
+insert into taikhoan values ('BS002', null);
 insert into taikhoan values ('BN001', null);
+insert into taikhoan values ('BN002', null);
 commit;
 delete from cabenh;
 INSERT INTO CABENH VALUES ('CA001','BN001', 'BS018', 'BE019', 'Cap cuu', 'Cach ly', TO_TIMESTAMP('07/05/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), TO_TIMESTAMP('12/05/2004 00:00:00','DD/MM/YYYY HH24:MI:SS'), 'Chuan doan', 'PH115');
