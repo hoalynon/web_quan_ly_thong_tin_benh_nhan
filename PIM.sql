@@ -27,10 +27,10 @@ CREATE TABLE BACSI
 	MaBS VARCHAR(10) NOT NULL,
 	HoTen VARCHAR2(100) NOT NULL,
 	GioiTinh VARCHAR(10),
-	NgaySinh DATE,
+	NgaySinh DATE NOT NULL,
 	QueQuan VARCHAR(100),
 	NoiOHienTai VARCHAR(100),
-	TenKhoa VARCHAR(50),
+	TenKhoa VARCHAR(50) NOT NULL,
 	NamPhucVu NUMBER,
 	CONSTRAINT PK_BACSI PRIMARY KEY (MaBS),
 	CONSTRAINT CK_BACSI_TENKHOA CHECK(TENKHOA IN ('Hoi Suc Cap Cuu', 'Noi Tong Hop', 'Noi Tim Mach', 'Noi Tieu Hoa', 'Noi Co-Xuong-Khop', 'Noi Than-Tiet Nieu','Noi Tiet','Di Ung','Truyen Nhiem','Lao','Da Lieu','Than Kinh', 'Tam Than','Y Hoc Co Truyen','Nhi','Ngoai Tong Hop','Chan Thuong Chinh Hinh','Bong','Phu San','Tai-Mui-Hong','Rang-Ham-Mat','Mat','Vat Ly Tri Lieu','Y Hoc Hat Nhat','Truyen Mau','Loc Mau','Hoa Sinh','Vi Sinh','Chuan Doan Hinh Anh','Noi Soi','Duoc','Dinh Duong','Cap Cuu','Ung Buou'))
@@ -42,7 +42,7 @@ CREATE TABLE BENHNHAN
 	MaBN VARCHAR(10) NOT NULL,
 	HoTen VARCHAR2(100) NOT NULL,
 	GioiTinh VARCHAR(10),
-	NgaySinh DATE,
+	NgaySinh DATE NOT NULL,
 	QueQuan VARCHAR(100),
 	NoiOHienTai VARCHAR(100),
 	CONSTRAINT PK_BENHNHAN PRIMARY KEY (MaBN)
@@ -53,8 +53,8 @@ commit;
 create table benh
 (
     mabenh varchar(50),
-    tenbenh varchar2(100),
-    tenkhoa varchar(50),
+    tenbenh varchar2(100) NOT NULL,
+    tenkhoa varchar(50) NOT NULL,
     constraint pk_benh primary key (mabenh)
     CONSTRAINT CK_BENH_TENKHOA CHECK(TENKHOA IN ('Hoi Suc Cap Cuu', 'Noi Tong Hop', 'Noi Tim Mach', 'Noi Tieu Hoa', 'Noi Co-Xuong-Khop', 'Noi Than-Tiet Nieu','Noi Tiet','Di Ung','Truyen Nhiem','Lao','Da Lieu','Than Kinh', 'Tam Than','Y Hoc Co Truyen','Nhi','Ngoai Tong Hop','Chan Thuong Chinh Hinh','Bong','Phu San','Tai-Mui-Hong','Rang-Ham-Mat','Mat','Vat Ly Tri Lieu','Y Hoc Hat Nhat','Truyen Mau','Loc Mau','Hoa Sinh','Vi Sinh','Chuan Doan Hinh Anh','Noi Soi','Duoc','Dinh Duong','Cap Cuu','Ung Buou'));
 );
@@ -67,7 +67,7 @@ create table phongbenh
     loai varchar(20),
     toa number,
     lau number,
-    succhua number,
+    succhua number NOT NULL,
     controng number,
     constraint pk_phongbenh primary key (maphong)
 );
@@ -79,11 +79,11 @@ create table cabenh
     mabn varchar(10),
     mabs varchar(10),
     mabenh varchar(50),
-    mucdo varchar2(20),
-    hinhthuc varchar(20),
+    mucdo varchar2(20) CHECK IN ('Khong cap cuu','Hoi suc','Nang','Cham soc dac biet','Cap cuu'),
+    hinhthuc varchar(20) CHECK IN ('Tai gia','Nhap vien','Cach ly'),
     ngaybatdau timestamp,
     ngayketthuc timestamp,
-    tinhtrang varchar(20),
+    tinhtrang varchar(20) CHECK IN ('Trieu chung','Chuan doan','Dieu tri','Giam sat','Cham soc','Da ket thuc'),
     maphong varchar(10),
     constraint pk_cabenh primary key (mabn,mabs,mabenh,ngaybatdau),
     constraint fk_cabenh_mabn foreign key (mabn) references benhnhan(mabn),
@@ -97,10 +97,10 @@ commit;
 create table thietbiyte
 (
     mathietbi varchar(10),
-    tenthietbi varchar2(50),
-    loaisd varchar2(20),
+    tenthietbi varchar2(50) NOT NULL,
+    loaisd varchar2(20) CHECK IN ('1 lan','Tai su dung'),
     congdung varchar2(200),
-    sltong number,
+    sltong number NOT NULL,
     slconlai number,
     constraint pk_thietbiyte primary key (mathietbi)
 );
@@ -111,7 +111,7 @@ create table dieuphoithietbi
 (
     maca varchar(20),
     mathietbi varchar(10),
-    soluong number,
+    soluong number NOT NULL,
     ngaydieuphoi timestamp,
     ngayketthuc timestamp,
     constraint pk_dieuphoithietbi primary key (maca,mathietbi,ngaydieuphoi),
