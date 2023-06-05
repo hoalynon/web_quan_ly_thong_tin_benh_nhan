@@ -17,7 +17,7 @@ as
 begin
     SELECT SUM(DP.SOLUONG) INTO tongso FROM DIEUPHOITHIETBI DP, CABENH CB
     WHERE DP.MACA = CB.MACA AND DP.MATHIETBI = TBMaThietBi
-    AND CB.TINHTRANG != 'Da ket thuc' AND CURRENT_TIMESTAMP > DP.NGAYKETTHUC;
+    AND CB.TINHTRANG != 'Da ket thuc' AND CURRENT_TIMESTAMP < DP.NGAYKETTHUC AND CURRENT_TIMESTAMP >= DP.NGAYDIEUPHOI;
     IF tongso IS NULL THEN
         RETURN 0;
     END IF;
@@ -315,14 +315,20 @@ as
     v_tinhtrangtruoc CABENH.TINHTRANG%TYPE;
     cadaketthuc EXCEPTION;
     v_maca CABENH.MACA%TYPE;
+    ngaydaketthuc EXCEPTION;
 begin
     -- Ki?m tra s? t?n t?i c?a ca b?nh --
     SELECT MACA INTO v_maca FROM CABENH WHERE MACA = CBMaCa;
     
-    -- Ki?m tra tình tr?ng ca b?nh tr??c khi thay ??i
+    -- Ki?m tra tình tr?ng ca b?nh tr??c khi thay ??i --
     SELECT TINHTRANG INTO v_tinhtrangtruoc FROM CABENH WHERE MACA = CBMaCa;
     IF v_tinhtrangtruoc = 'Da ket thuc' THEN
         RAISE cadaketthuc;
+    END IF;
+    
+     -- Ki?m tra ngày k?t thúc không nh? h?n ngày hi?n t?i --
+    IF(TO_TIMESTAMP(CBKetThuc,'DD/MM/YYYY HH24:MI:SS') < CURRENT_TIMESTAMP) THEN
+        raise ngaydaketthuc;
     END IF;
     
     -- Ki?m tra thông tin phòng có còn tr?ng không --
@@ -358,6 +364,8 @@ exception
         raise_application_error (-20133, 'Khong ton tai ca benh nao voi ma tren');
     when cadaketthuc then
         raise_application_error(-20131,'Ca da ket thuc. Khong the chinh sua');
+    when ngaydaketthuc then
+        raise_application_error (-20143, 'Ngay ket thuc nho hon ngay hien tai. Ca benh khong the tiep tuc. Vui long keo dai thoi diem ket thuc');
     when khongcontrong then
         raise_application_error (-20106, 'Phong da day');
 end;
@@ -478,7 +486,7 @@ create or replace procedure proc_phongbenh_layphongbenh (p_result OUT SYS_REFCUR
 as
 begin
     --UPDATE PHONGBENH SET CONTRONG = SUCCHUA - func_phongbenh_tinhsisophong(MAPHONG);
-    OPEN p_result FOR SELECT * FROM PHONGBENH ORDER BY MAPHONG ASC ;
+    OPEN p_result FOR SELECT * FROM PHONGBENH ORDER BY MAPHONG ASC;
    -- commit;
 exception
     when no_data_found then
@@ -544,12 +552,12 @@ begin
         WHERE MAPHONG = PHMaPhong;
    
     changedrows := SQL%ROWCOUNT;
-    --sleep(20);
+    sleep(20);
     commit;
 
 exception
     when no_data_found then
-        raise_application_error(-20138, 'Khong ton tai phong benh nao voi ma tren');
+        raise_application_error(-20139, 'Khong ton tai phong benh nao voi ma tren');
     when succhuakhongdu then
         raise_application_error(-20112,'Phong khong chua du benh nhan hien co');
 end;
@@ -606,7 +614,7 @@ begin
         SET MATKHAU = TKMatKhau
         WHERE TENDANGNHAP = TKTenDangNhap;
     changedrows := SQL%ROWCOUNT;
-    commit;
+    --commit;
 exception
     when no_data_found then
         raise_application_error(-20138, 'Khong ton tai tai khoan nao voi ten dang nhap tren');
@@ -621,7 +629,7 @@ begin
    UPDATE THIETBIYTE SET SLCONLAI = SLTONG - func_thietbiyte_tinhsothietbidieuphoi(MATHIETBI) WHERE LOAISD = 'Tai su dung';
     UPDATE THIETBIYTE SET SLCONLAI = SLTONG WHERE LOAISD = '1 lan';
     OPEN p_result FOR SELECT * FROM THIETBIYTE ORDER BY MATHIETBI ASC;
-    -- commit;
+     --commit;
 exception
     when no_data_found then
         raise_application_error(-20114,'Khong ton tai du lieu thiet bi y te nao');
@@ -688,7 +696,7 @@ begin
     END IF;
     
     UPDATE THIETBIYTE 
-        SET TENTHIETBI = TBTenThietBi, LOAISD = TBLoaiSD, CONGDUNG = TBCongDung, SLTONG = TBSLTong, SLCONLAI = TBSLTong - func_thietbiyte_tinhsothietbidieuphoi(TBMaThietBi)
+        SET TENTHIETBI = TBTenThietBi, CONGDUNG = TBCongDung, SLTONG = TBSLTong, SLCONLAI = TBSLTong - func_thietbiyte_tinhsothietbidieuphoi(TBMaThietBi)
         WHERE MATHIETBI = TBMaThietBi;
     changedrows := SQL%ROWCOUNT;
      UPDATE THIETBIYTE SET SLCONLAI = SLCONLAI + func_thietbiyte_tinhsothietbidieuphoi(TBMaThietBi) WHERE MATHIETBI = TBMaThietBi AND LOAISD = '1 lan';
@@ -696,7 +704,7 @@ begin
 
 exception
     when no_data_found then
-        raise_application_error(-20139, 'Khong ton tai thiet bi y te nao voi ma tren');
+        raise_application_error(-20140, 'Khong ton tai thiet bi y te nao voi ma tren');
     when khongdudieuphoi then
         raise_application_error (-20115,'Thiet bi khong du so luong cho luong dieu phoi hien co');
 end;
@@ -734,6 +742,7 @@ as
     v_tinhtrangtruoc CABENH.TINHTRANG%TYPE;
     cadaketthuc EXCEPTION;
     v_maca CABENH.MACA%TYPE;
+    ngaydaketthuc EXCEPTION;
 begin
     SELECT MACA INTO v_maca FROM CABENH WHERE MACA = CBMaCa AND MABS = BSMaBS;
 
@@ -741,6 +750,11 @@ begin
     IF v_tinhtrangtruoc = 'Da ket thuc' THEN
         RAISE cadaketthuc;
     END IF;
+    
+    IF(TO_TIMESTAMP(CBKetThuc,'DD/MM/YYYY HH24:MI:SS') < CURRENT_TIMESTAMP) THEN
+        raise ngaydaketthuc;
+    END IF;
+    
     SELECT MAPHONG INTO v_maphongtruoc FROM CABENH WHERE MACA = CBMaCa;
     IF CBMaPhong is not null THEN
         SELECT CONTRONG INTO v_controng FROM PHONGBENH WHERE MAPHONG = CBMaPhong;
@@ -766,9 +780,11 @@ begin
     commit;
 exception
     when no_data_found then
-        raise_application_error(-20140, 'Khong ton tai ca benh nao voi ma tren ung voi ma bac si');
+        raise_application_error(-20141, 'Khong ton tai ca benh nao voi ma tren ung voi ma bac si');
     when cadaketthuc then
         raise_application_error (-20131,'Ca da ket thuc');
+    when ngaydaketthuc then
+        raise_application_error (-20144, 'Ngay ket thuc nho hon ngay hien tai. Ca benh khong the tiep tuc. Vui long keo dai thoi diem ket thuc');
     when khongcontrong then
         raise_application_error (-20117, 'Phong da day');
 end;
@@ -878,7 +894,7 @@ begin
 
 exception
     when no_data_found then
-        raise_application_error(-20141, 'Khong ton tai dieu phoi nao voi ma ca, ma thiet bi, thoi diem tren');
+        raise_application_error(-20142, 'Khong ton tai dieu phoi nao voi ma ca, ma thiet bi, thoi diem tren');
     when khongcoca then
         raise_application_error(-20122, 'Khong duoc sua dieu phoi thiet bi ca benh cua bac si khac');
     when khongdusoluong then
