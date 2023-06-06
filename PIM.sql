@@ -55,8 +55,8 @@ create table benh
     mabenh varchar(50),
     tenbenh varchar2(100) NOT NULL,
     tenkhoa varchar(50) NOT NULL,
-    constraint pk_benh primary key (mabenh)
-    CONSTRAINT CK_BENH_TENKHOA CHECK(TENKHOA IN ('Hoi Suc Cap Cuu', 'Noi Tong Hop', 'Noi Tim Mach', 'Noi Tieu Hoa', 'Noi Co-Xuong-Khop', 'Noi Than-Tiet Nieu','Noi Tiet','Di Ung','Truyen Nhiem','Lao','Da Lieu','Than Kinh', 'Tam Than','Y Hoc Co Truyen','Nhi','Ngoai Tong Hop','Chan Thuong Chinh Hinh','Bong','Phu San','Tai-Mui-Hong','Rang-Ham-Mat','Mat','Vat Ly Tri Lieu','Y Hoc Hat Nhat','Truyen Mau','Loc Mau','Hoa Sinh','Vi Sinh','Chuan Doan Hinh Anh','Noi Soi','Duoc','Dinh Duong','Cap Cuu','Ung Buou'));
+    constraint pk_benh primary key (mabenh),
+    CONSTRAINT CK_BENH_TENKHOA CHECK(TENKHOA IN ('Hoi Suc Cap Cuu', 'Noi Tong Hop', 'Noi Tim Mach', 'Noi Tieu Hoa', 'Noi Co-Xuong-Khop', 'Noi Than-Tiet Nieu','Noi Tiet','Di Ung','Truyen Nhiem','Lao','Da Lieu','Than Kinh', 'Tam Than','Y Hoc Co Truyen','Nhi','Ngoai Tong Hop','Chan Thuong Chinh Hinh','Bong','Phu San','Tai-Mui-Hong','Rang-Ham-Mat','Mat','Vat Ly Tri Lieu','Y Hoc Hat Nhat','Truyen Mau','Loc Mau','Hoa Sinh','Vi Sinh','Chuan Doan Hinh Anh','Noi Soi','Duoc','Dinh Duong','Cap Cuu','Ung Buou'))
 );
 
 commit;
@@ -79,11 +79,11 @@ create table cabenh
     mabn varchar(10),
     mabs varchar(10),
     mabenh varchar(50),
-    mucdo varchar2(20) CHECK IN ('Khong cap cuu','Hoi suc','Nang','Cham soc dac biet','Cap cuu'),
-    hinhthuc varchar(20) CHECK IN ('Tai gia','Nhap vien','Cach ly'),
+    mucdo varchar2(20) CHECK (mucdo IN ('Khong cap cuu','Hoi suc','Nang','Cham soc dac biet','Cap cuu')),
+    hinhthuc varchar(20) CHECK (hinhthuc IN ('Tai gia','Nhap vien','Cach ly')),
     ngaybatdau timestamp,
     ngayketthuc timestamp,
-    tinhtrang varchar(20) CHECK IN ('Trieu chung','Chuan doan','Dieu tri','Giam sat','Cham soc','Da ket thuc'),
+    tinhtrang varchar(20) CHECK (tinhtrang IN ('Trieu chung','Chuan doan','Dieu tri','Giam sat','Cham soc','Da ket thuc')),
     maphong varchar(10),
     constraint pk_cabenh primary key (mabn,mabs,mabenh,ngaybatdau),
     constraint fk_cabenh_mabn foreign key (mabn) references benhnhan(mabn),
@@ -98,7 +98,7 @@ create table thietbiyte
 (
     mathietbi varchar(10),
     tenthietbi varchar2(50) NOT NULL,
-    loaisd varchar2(20) CHECK IN ('1 lan','Tai su dung'),
+    loaisd varchar2(20) CHECK (loaisd IN ('1 lan','Tai su dung')),
     congdung varchar2(200),
     sltong number NOT NULL,
     slconlai number,
