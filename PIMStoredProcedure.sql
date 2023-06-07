@@ -41,10 +41,6 @@ create or replace procedure proc_bacsi_laybacsi (p_result OUT SYS_REFCURSOR)
 as
 begin
     OPEN p_result FOR SELECT * FROM BACSI ORDER BY MABS ASC;
-    commit;
-exception
-    when no_data_found then
-        raise_application_error(-20101,'Khong ton tai du lieu bac si nao');
 end;
 /
 -- 4
@@ -63,7 +59,6 @@ as
 begin
     INSERT INTO BACSI VALUES (BSMaBS, BSHoTen, BSGioiTinh, TO_DATE(BSNgaySinh,'DD/MM/YYYY'), BSQueQuan, BSNoiOHienTai, BSTenKhoa, BSNamPhucVu);
     changedrows := SQL%ROWCOUNT;
-     commit;
 end;
 /
 -- 5
@@ -77,7 +72,6 @@ begin
     DELETE FROM BACSI 
         WHERE MABS = BSMaBS;
     changedrows := SQL%ROWCOUNT;
-    commit;
 end;
 /
 -- 6
@@ -100,7 +94,6 @@ begin
         SET HOTEN = BSHoTen, GIOITINH = BSGioiTinh, NGAYSINH = TO_DATE(BSNgaySinh,'DD/MM/YYYY'), QUEQUAN = BSQueQuan, NOIOHIENTAI = BSNoiOHienTai, TENKHOA = BSTenKhoa, NAMPHUCVU = BSNamPhucVu
         WHERE MABS = BSMaBS;
     changedrows := SQL%ROWCOUNT;
-     commit;
 exception
     when no_data_found then
         raise_application_error(-20134, 'Khong ton tai bac si nao voi ma tren');
@@ -112,10 +105,6 @@ create or replace procedure proc_benh_laybenh (p_result OUT SYS_REFCURSOR)
 as
 begin
     OPEN p_result FOR SELECT * FROM BENH ORDER BY MABENH ASC;
-     commit;
-exception
-    when no_data_found then
-        raise_application_error(-20102,'Khong ton tai du lieu benh nao');
 end;
 /
 -- 8
@@ -129,7 +118,6 @@ as
 begin
     INSERT INTO BENH VALUES (BEMaBenh, BETenBenh, BETenKhoa);
     changedrows := SQL%ROWCOUNT;
-    commit;
 end;
 /
 -- 9
@@ -142,7 +130,6 @@ begin
     DELETE FROM BENH 
         WHERE MABENH = BEMaBenh;
     changedrows := SQL%ROWCOUNT;
-    commit;
 end ;
 /
 -- 10
@@ -160,7 +147,6 @@ begin
         SET TENBENH = BETenBenh, TENKHOA = BETenKhoa
         WHERE MABENH = BEMaBenh;
     changedrows := SQL%ROWCOUNT;
-    commit;
 exception
     when no_data_found then
         raise_application_error(-20135, 'Khong ton tai benh nao voi ma tren');
@@ -173,10 +159,6 @@ create or replace procedure proc_benhnhan_laybenhnhan (p_result OUT SYS_REFCURSO
 as
 begin
     OPEN p_result FOR SELECT * FROM BENHNHAN ORDER BY MABN ASC;
-    commit;
-exception
-    when no_data_found then
-        raise_application_error(-20103,'Khong ton tai du lieu benh nhan nao');
 end;
 /
 -- 12
@@ -193,7 +175,6 @@ as
 begin
     INSERT INTO BENHNHAN VALUES (BNMaBN, BNHoTen, BNGioiTinh, TO_DATE(BNNgaySinh,'DD/MM/YYYY'), BNQueQuan, BNNoiOHienTai);
     changedrows := SQL%ROWCOUNT;
-    commit;
 end;
 /
 -- 13
@@ -206,7 +187,6 @@ begin
     DELETE FROM BENHNHAN 
         WHERE MABN = BNMaBN;
     changedrows := SQL%ROWCOUNT;
-    commit;
 end;
 /
 -- 14
@@ -227,7 +207,6 @@ begin
         SET HOTEN = BNHoTen, GIOITINH = BNGioiTinh, NGAYSINH = TO_DATE(BNNgaySinh,'DD/MM/YYYY'), QUEQUAN = BNQueQuan, NOIOHIENTAI = BNNoiOHienTai
         WHERE MABN = BNMaBN;
     changedrows := SQL%ROWCOUNT;
-    commit;
 exception
     when no_data_found then
         raise_application_error(-20136, 'Khong ton tai benh nhan nao voi ma tren');
@@ -240,10 +219,6 @@ create or replace procedure proc_cabenh_laycabenh (p_result OUT SYS_REFCURSOR)
 as
 begin
     OPEN p_result FOR SELECT * FROM CABENH ORDER BY MACA ASC;
-     commit;
-exception
-    when no_data_found then
-        raise_application_error(-20104,'Khong ton tai du lieu ca benh nao');
 end;
 /
 -- 16
@@ -277,7 +252,6 @@ begin
     UPDATE CABENH SET MAPHONG = CBMaPhong WHERE MABN = CBMaBN;
     
     UPDATE PHONGBENH SET CONTRONG = SUCCHUA - func_phongbenh_tinhsisophong(MAPHONG);
-    commit;
 exception
     when khongcontrong then
         raise_application_error('-20105','Phong da day');
@@ -299,7 +273,6 @@ begin
     IF v_maphongtruoc IS NOT NULL THEN
        UPDATE PHONGBENH SET CONTRONG = SUCCHUA - func_phongbenh_tinhsisophong(v_maphongtruoc);
     END IF;
-    commit;
 end;
 /
 -- 18
@@ -322,21 +295,21 @@ as
     v_maca CABENH.MACA%TYPE;
     ngaydaketthuc EXCEPTION;
 begin
-    -- Ki?m tra s? t?n t?i c?a ca b?nh --
+    -- Kiem tra su ton tai cua ca benh --
     SELECT MACA INTO v_maca FROM CABENH WHERE MACA = CBMaCa;
     
-    -- Ki?m tra tình tr?ng ca b?nh tr??c khi thay ??i --
+    -- Kiem tra tinh trang ca benh truoc khi thay doi --
     SELECT TINHTRANG INTO v_tinhtrangtruoc FROM CABENH WHERE MACA = CBMaCa;
     IF v_tinhtrangtruoc = 'Da ket thuc' THEN
         RAISE cadaketthuc;
     END IF;
     
-     -- Ki?m tra ngày k?t thúc không nh? h?n ngày hi?n t?i --
+     -- Kiem tra ngay ket thuc khong nho hon ngay hien tai --
     IF(TO_TIMESTAMP(CBKetThuc,'DD/MM/YYYY HH24:MI:SS') < CURRENT_TIMESTAMP) THEN
         raise ngaydaketthuc;
     END IF;
     
-    -- Ki?m tra thông tin phòng có còn tr?ng không --
+    -- Kiem tra thong tin phong co con trong khong --
     SELECT MAPHONG INTO v_maphongtruoc FROM CABENH WHERE MACA = CBMaCa;
     IF CBMaPhong is not null THEN
         SELECT CONTRONG INTO v_controng FROM PHONGBENH WHERE MAPHONG = CBMaPhong;
@@ -345,18 +318,18 @@ begin
         RAISE khongcontrong;
     END IF;
     
-    -- C?p nh?t thông tin ca b?nh --
+    -- Cap nhat thong tin ca benh --
     UPDATE CABENH 
         SET MUCDO = CBMucDo, HINHTHUC = CBHinhThuc, NGAYKETTHUC = TO_TIMESTAMP(CBKetThuc,'DD/MM/YYYY HH24:MI:SS'), TINHTRANG = CBTinhTrang, MAPHONG = CBMaPhong
         WHERE MACA = CBMaCa;
     changedrows := SQL%ROWCOUNT;
     
-    -- C?p nh?t thông tin phòng m?i cho nh?ng ca có cùng b?nh nhân --
+    -- Cap nhat thong tin phong moi cho nhung ca co cung benh nhan --
     SELECT MABN INTO v_mabn FROM CABENH WHERE MACA = CBMaCa;
     UPDATE CABENH
         SET MAPHONG = CBMaPhong WHERE MABN = v_mabn AND TINHTRANG != 'Da ket thuc';
     
-    -- C?p nh?t thông tin còn tr?ng cho phòng m?i và phòng c? -- 
+    -- Cap nhat thong tin so luong con trong cho nhung phong moi va phong cu --
     IF v_maphongtruoc IS NOT NULL THEN
         UPDATE PHONGBENH SET CONTRONG = SUCCHUA - func_phongbenh_tinhsisophong(v_maphongtruoc) WHERE MAPHONG = v_maphongtruoc;
     END IF;
@@ -364,9 +337,8 @@ begin
         UPDATE PHONGBENH SET CONTRONG = SUCCHUA - func_phongbenh_tinhsisophong(CBMaPhong) WHERE MAPHONG = CBMaPhong;
     END IF;
     
-    -- C?p nh?t s? l??ng thi?t b? --
+    -- Cap nhat so luong thiet bi --
     UPDATE THIETBIYTE SET SLCONLAI = SLTONG - func_thietbiyte_tinhsothietbidieuphoi(MATHIETBI) WHERE LOAISD = 'Tai su dung';
-    commit;
 exception
     when no_data_found then
         raise_application_error (-20133, 'Khong ton tai ca benh nao voi ma tren');
@@ -385,10 +357,6 @@ create or replace procedure proc_dieuphoithietbi_laydieuphoithietbi (p_result OU
 as
 begin
     OPEN p_result FOR SELECT * FROM DIEUPHOITHIETBI ORDER BY MACA, MATHIETBI ASC;
-    commit;
-exception
-    when no_data_found then
-        raise_application_error(-20107,'Khong ton tai du lieu dieu phoi thiet bi nao');
 end;
 /
 -- 20
@@ -421,7 +389,6 @@ begin
     changedrows := SQL%ROWCOUNT;
     UPDATE THIETBIYTE SET SLCONLAI = SLCONLAI - DPSoLuong WHERE MATHIETBI = DPMaThietBi;
     UPDATE THIETBIYTE SET SLTONG = SLCONLAI WHERE MATHIETBI = DPMaThietBi AND LOAISD = '1 lan';
-    commit;
 exception
     when tinhtrangkhonghople then
         raise_application_error(-20108,'Ca benh da ket thuc. Khong the dieu phoi');
@@ -445,7 +412,6 @@ begin
         WHERE MACA = DPMaCa AND MATHIETBI = DPMaThietBi AND NGAYDIEUPHOI = TO_TIMESTAMP (DPDieuPhoi , 'DD/MM/YYYY HH24:MI:SS');
     changedrows := SQL%ROWCOUNT;
     UPDATE THIETBIYTE SET SLCONLAI = SLCONLAI + v_soluong WHERE MATHIETBI = DPMaThietBi AND LOAISD = 'Tai su dung';
-    commit;
 end;
 /
 -- 22
@@ -479,7 +445,6 @@ begin
     changedrows := SQL%ROWCOUNT;
     UPDATE THIETBIYTE SET SLCONLAI = SLCONLAI - DPSoLuong + v_sltruoc WHERE MATHIETBI = DPMaThietBi;
     UPDATE THIETBIYTE SET SLTONG = SLCONLAI WHERE MATHIETBI = DPMaThietBi AND LOAISD = '1 lan';
-    commit;
 exception
     when no_data_found then
         raise_application_error(-20137, 'Khong ton tai dieu phoi nao voi ma ca, ma thiet bi, thoi diem tren');
@@ -495,10 +460,6 @@ as
 begin
     --UPDATE PHONGBENH SET CONTRONG = SUCCHUA - func_phongbenh_tinhsisophong(MAPHONG);
     OPEN p_result FOR SELECT * FROM PHONGBENH ORDER BY MAPHONG ASC;
-     commit;
-exception
-    when no_data_found then
-        raise_application_error(-20111,'Khong ton tai du lieu phong benh nao');
 end;
 /
 -- 24
@@ -518,7 +479,6 @@ begin
     END IF;
     INSERT INTO PHONGBENH VALUES (PHMaPhong, PHLoai, PHToa, PHLau, PHSucChua, PHSucChua - func_phongbenh_tinhsisophong(PHMaPhong));
     changedrows := SQL%ROWCOUNT;
-    commit;
 exception
     when succhuakhongdu then
         raise_application_error(-20130,'Phong co suc chua khong hop le');
@@ -534,7 +494,6 @@ begin
     DELETE FROM PHONGBENH 
         WHERE MAPHONG = PHMaPhong;
     changedrows := SQL%ROWCOUNT;
-    commit;
 end;
 /
 -- 26
@@ -560,8 +519,6 @@ begin
         WHERE MAPHONG = PHMaPhong;
    
     changedrows := SQL%ROWCOUNT;
-    sleep(20);
-    commit;
 
 exception
     when no_data_found then
@@ -576,10 +533,6 @@ create or replace procedure proc_taikhoan_laytaikhoan (p_result OUT SYS_REFCURSO
 as
 begin
     OPEN p_result FOR SELECT * FROM TAIKHOAN ORDER BY TENDANGNHAP ASC;
-    commit;
-exception
-    when no_data_found then
-        raise_application_error(-20113,'Khong ton tai du lieu tai khoan nao');
 end;
 /
 -- 28
@@ -592,7 +545,6 @@ as
 begin
     INSERT INTO TAIKHOAN VALUES (TKTenDangNhap, TKMatKhau);
     changedrows := SQL%ROWCOUNT;
-    commit;
 end;
 /
 -- 29
@@ -605,7 +557,6 @@ begin
     DELETE FROM TAIKHOAN 
         WHERE TENDANGNHAP = TKTenDangNhap;
     changedrows := SQL%ROWCOUNT;
-    commit;
 end;
 /
 -- 30
@@ -622,7 +573,6 @@ begin
         SET MATKHAU = TKMatKhau
         WHERE TENDANGNHAP = TKTenDangNhap;
     changedrows := SQL%ROWCOUNT;
-    commit;
 exception
     when no_data_found then
         raise_application_error(-20138, 'Khong ton tai tai khoan nao voi ten dang nhap tren');
@@ -637,10 +587,6 @@ begin
    UPDATE THIETBIYTE SET SLCONLAI = SLTONG - func_thietbiyte_tinhsothietbidieuphoi(MATHIETBI) WHERE LOAISD = 'Tai su dung';
     UPDATE THIETBIYTE SET SLCONLAI = SLTONG WHERE LOAISD = '1 lan';
     OPEN p_result FOR SELECT * FROM THIETBIYTE ORDER BY MATHIETBI ASC;
-     commit;
-exception
-    when no_data_found then
-        raise_application_error(-20114,'Khong ton tai du lieu thiet bi y te nao');
 end;
 /
 -- 32
@@ -665,7 +611,6 @@ begin
         INSERT INTO THIETBIYTE VALUES (TBMaThietBi, TBTenThietBi, TBLoaiSD, TBCongDung, TBSLTong, TBSLTong);
         changedrows := SQL%ROWCOUNT;
     END IF;
-    commit;
 exception    
     when khongdusoluong then
         raise_application_error (-20129,'Thiet bi khong du so luong');
@@ -681,7 +626,6 @@ begin
     DELETE FROM THIETBIYTE 
         WHERE MATHIETBI = TBMaThietBi;
     changedrows := SQL%ROWCOUNT;
-    commit;
 end;
 /
 -- 34
@@ -708,7 +652,6 @@ begin
         WHERE MATHIETBI = TBMaThietBi;
     changedrows := SQL%ROWCOUNT;
      UPDATE THIETBIYTE SET SLCONLAI = SLCONLAI + func_thietbiyte_tinhsothietbidieuphoi(TBMaThietBi) WHERE MATHIETBI = TBMaThietBi AND LOAISD = '1 lan';
-    commit;
 
 exception
     when no_data_found then
@@ -725,10 +668,6 @@ as
 begin
     OPEN p_result FOR SELECT MACA, MABN, MABENH, MUCDO, HINHTHUC, NGAYBATDAU, NGAYKETTHUC, TINHTRANG, MAPHONG FROM CABENH
                         WHERE MABS = BSMaBS ORDER BY MACA ASC;
-     commit;
-exception
-    when no_data_found then
-        raise_application_error(-20116,'Khong ton tai du lieu ca benh nao');
 end;
 /
 
@@ -789,7 +728,6 @@ begin
 
     UPDATE THIETBIYTE SET SLCONLAI = SLTONG - func_thietbiyte_tinhsothietbidieuphoi(MATHIETBI) WHERE LOAISD = 'Tai su dung';
     
-    commit;
 exception
     when no_data_found then
         raise_application_error(-20141, 'Khong ton tai ca benh nao voi ma tren ung voi ma bac si');
@@ -808,10 +746,6 @@ as
 begin
     OPEN p_result FOR SELECT DISTINCT DP.* FROM DIEUPHOITHIETBI DP, CABENH CB 
                         WHERE CB.MABS = BSMaBS AND CB.MACA = DP.MACA ORDER BY DP.MACA, DP.MATHIETBI ASC;
-    commit;
-exception
-    when no_data_found then
-        raise_application_error(-20118,'Khong ton tai du lieu dieu phoi thiet bi nao');
 end;
 /
 
@@ -853,7 +787,6 @@ begin
     changedrows := SQL%ROWCOUNT;
     UPDATE THIETBIYTE SET SLCONLAI = (SLCONLAI - DPSoLuong) WHERE MATHIETBI = DPMaThietBi;
     UPDATE THIETBIYTE SET SLTONG = SLCONLAI WHERE MATHIETBI = DPMaThietBi AND LOAISD = '1 lan';
-    commit;
     
 exception
     when tinhtrangkhonghople then
@@ -902,7 +835,6 @@ begin
     changedrows := SQL%ROWCOUNT;
     UPDATE THIETBIYTE SET SLCONLAI = SLCONLAI - DPSoLuong + v_sltruoc WHERE MATHIETBI = DPMaThietBi;
     UPDATE THIETBIYTE SET SLTONG = SLCONLAI WHERE MATHIETBI = DPMaThietBi AND LOAISD = '1 lan';
-    commit;
 
 exception
     when no_data_found then
@@ -918,10 +850,6 @@ create or replace procedure proc_bacsi_laybacsi_theobacsi (BSMaBS BACSI.MABS%TYP
 as
 begin
     OPEN p_result FOR SELECT * FROM BACSI WHERE MABS = BSMaBS ORDER BY MABS ASC;
-     commit;
-exception
-    when no_data_found then
-        raise_application_error(-20124,'Khong ton tai du lieu bac si nao');
 end;
 /
 -------------------------------------------------
@@ -931,10 +859,6 @@ as
 begin
     OPEN p_result FOR SELECT DISTINCT BS.* FROM BACSI BS, CABENH CB 
                         WHERE CB.MABN = BNMaBN AND BS.MABS = CB.MABS ORDER BY BS.MABS ASC;
-    commit;
-exception
-    when no_data_found then
-        raise_application_error(-20125,'Khong ton tai du lieu bac si nao');
 end;
 /
 -- 42
@@ -943,10 +867,6 @@ as
 begin
     OPEN p_result FOR SELECT DISTINCT CB.MACA, CB.MABS, CB.MABENH, B.TENBENH, CB.MUCDO, CB.HINHTHUC, CB.NGAYBATDAU, CB.NGAYKETTHUC, CB.TINHTRANG, CB.MAPHONG
                         FROM CABENH CB, BENH B WHERE CB.MABN = BNMaBN AND CB.MABENH = B.MABENH ORDER BY CB.MACA ASC;
-    commit;
-exception
-    when no_data_found then
-        raise_application_error(-20126,'Khong ton tai du lieu ca benh nao');
 end;
 /
 -- 43
@@ -957,10 +877,6 @@ begin
                         FROM DIEUPHOITHIETBI DP, THIETBIYTE TB, CABENH CB 
                         WHERE DP.MACA = CB.MACA AND CB.MABN = BNMaBN AND DP.MATHIETBI = TB.MATHIETBI 
                         ORDER BY DP.MATHIETBI ASC;
-    commit;
-exception
-    when no_data_found then
-        raise_application_error(-20127,'Khong ton tai du lieu dieu phoi thiet bi nao');
 end;
 /
 -- 44
@@ -968,10 +884,6 @@ create or replace procedure proc_benhnhan_laybenhnhan_theobenhnhan (BNMaBN BENHN
 as
 begin
     OPEN p_result FOR SELECT * FROM BENHNHAN WHERE MABN = BNMaBN ORDER BY MABN ASC;
-    commit;
-exception
-    when no_data_found then
-        raise_application_error(-20128,'Khong ton tai du lieu benh nhan nao');
 end;
 /
 ----------------------------------------------
